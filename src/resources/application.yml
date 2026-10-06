@@ -1,0 +1,29 @@
+server:
+  host: 127.0.0.1
+  port: 8090
+ember:
+  profiles:
+    active: local
+logging:
+  level: info
+  backtrace: errors
+bootui:
+  enabled: true
+  host: 127.0.0.1
+  port: 8091
+  path: /bootui
+  local_only: true
+
+actuator:
+  endpoints: [health, live, ready, info]
+
+startup:
+  banner: true
+  show_config: true
+
+scheduler:
+  enabled: true
+  tasks:
+    pet-maintenance:
+      enabled: true
+      interval_ms: 30000

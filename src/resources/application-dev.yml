@@ -1,0 +1,23 @@
+server:
+  host: 127.0.0.1
+  port: 8081
+ember:
+  profiles:
+    active: dev
+logging:
+  level: debug
+  backtrace: errors
+
+actuator:
+  endpoints: [health, live, ready, info]
+
+startup:
+  banner: true
+  show_config: true
+
+scheduler:
+  enabled: true
+  tasks:
+    pet-maintenance:
+      enabled: true
+      interval_ms: 5000
