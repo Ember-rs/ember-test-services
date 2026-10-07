@@ -1,4 +1,4 @@
-use ember::prelude::*;
+use scafra::prelude::*;
 
 use crate::{
     models::pet::{Pet, PetRequest, StatusQuery, TagsQuery},

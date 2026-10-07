@@ -1,8 +1,8 @@
-# Ember Petstore test service
+# Scafra Petstore test service
 
-A complete in-memory Petstore API used to exercise Ember from a separate
-repository. It depends on the local Ember checkout at `../ember` while Ember
-is under development.
+A complete in-memory Petstore API used to exercise Scafra from a separate
+repository. It depends on the local Scafra checkout while Scafra is under
+development.
 
 ## Run
 
@@ -13,21 +13,21 @@ cargo run
 Use the development profile on port `8081`:
 
 ```bash
-EMBER_PROFILE=dev cargo run
+SCAFRA_PROFILE=dev cargo run
 ```
 
 The base settings are in `src/resources/application.yml`;
-`src/resources/application-dev.yml` is merged when `EMBER_PROFILE=dev` is set.
+`src/resources/application-dev.yml` is merged when `SCAFRA_PROFILE=dev` is set.
 Environment variables such as
-`EMBER_SERVER_PORT=9090` override both files.
+`SCAFRA_SERVER_PORT=9090` override both files.
 
 Application code is organized below `src/main/`, with controllers, services,
 jobs, and models in their respective subdirectories.
 
 The service also contains a scheduler example in
 `src/main/jobs/pet_maintenance.rs`. It logs a maintenance heartbeat every 30
-seconds by default, or every 5 seconds with `EMBER_PROFILE=dev`.
-The job uses Ember's structured `info!` macro and `#[logger]` instrumentation.
+seconds by default, or every 5 seconds with `SCAFRA_PROFILE=dev`.
+The job uses Scafra's structured `info!` macro and `#[logger]` instrumentation.
 
 Scheduler configuration is profile-aware:
 

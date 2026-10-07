@@ -165,140 +165,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "ember"
-version = "0.1.0"
-dependencies = [
- "axum",
- "ember-actuator",
- "ember-config",
- "ember-core",
- "ember-foundation",
- "ember-macros",
- "ember-scheduler",
- "ember-security",
- "ember-web",
- "inventory",
- "thiserror",
- "tokio",
- "tracing",
-]
-
-[[package]]
-name = "ember-actuator"
-version = "0.1.0"
-dependencies = [
- "axum",
- "inventory",
- "serde",
-]
-
-[[package]]
-name = "ember-bootui"
-version = "0.1.0"
-dependencies = [
- "axum",
- "ember-config",
- "ember-core",
- "inventory",
- "serde_json",
- "tokio",
- "tracing",
-]
-
-[[package]]
-name = "ember-config"
-version = "0.1.0"
-dependencies = [
- "ember-actuator",
- "ember-foundation",
- "ember-scheduler",
- "ember-security",
- "serde",
- "serde_yaml",
- "thiserror",
-]
-
-[[package]]
-name = "ember-core"
-version = "0.1.0"
-dependencies = [
- "ember-foundation",
- "inventory",
- "thiserror",
-]
-
-[[package]]
-name = "ember-foundation"
-version = "0.1.0"
-dependencies = [
- "serde",
- "thiserror",
- "tracing",
- "tracing-subscriber",
-]
-
-[[package]]
-name = "ember-macros"
-version = "0.1.0"
-dependencies = [
- "ember-foundation",
- "proc-macro2",
- "quote",
- "syn 2.0.119",
-]
-
-[[package]]
-name = "ember-scheduler"
-version = "0.1.0"
-dependencies = [
- "inventory",
- "serde",
- "tokio",
-]
-
-[[package]]
-name = "ember-security"
-version = "0.1.0"
-dependencies = [
- "axum",
- "base64 0.22.1",
- "jsonwebtoken",
- "reqwest",
- "serde",
- "serde_json",
- "tokio",
-]
-
-[[package]]
-name = "ember-test-service"
-version = "0.1.0"
-dependencies = [
- "ember",
- "ember-bootui",
- "serde",
- "tokio",
- "tracing",
-]
-
-[[package]]
-name = "ember-web"
-version = "0.1.0"
-dependencies = [
- "axum",
- "ember-actuator",
- "ember-core",
- "ember-foundation",
- "ember-security",
- "inventory",
- "serde",
- "thiserror",
- "tokio",
- "tower",
- "tower-http",
- "tracing",
-]
-
-[[package]]
 name = "equivalent"
 version = "1.0.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1042,6 +908,140 @@ name = "ryu"
 version = "1.0.23"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "9774ba4a74de5f7b1c1451ed6cd5285a32eddb5cccb8cc655a4e50009e06477f"
+
+[[package]]
+name = "scafra"
+version = "0.1.0"
+dependencies = [
+ "axum",
+ "inventory",
+ "scafra-actuator",
+ "scafra-config",
+ "scafra-core",
+ "scafra-foundation",
+ "scafra-macros",
+ "scafra-scheduler",
+ "scafra-security",
+ "scafra-web",
+ "thiserror",
+ "tokio",
+ "tracing",
+]
+
+[[package]]
+name = "scafra-actuator"
+version = "0.1.0"
+dependencies = [
+ "axum",
+ "inventory",
+ "serde",
+]
+
+[[package]]
+name = "scafra-bootui"
+version = "0.1.0"
+dependencies = [
+ "axum",
+ "inventory",
+ "scafra-config",
+ "scafra-core",
+ "serde_json",
+ "tokio",
+ "tracing",
+]
+
+[[package]]
+name = "scafra-config"
+version = "0.1.0"
+dependencies = [
+ "scafra-actuator",
+ "scafra-foundation",
+ "scafra-scheduler",
+ "scafra-security",
+ "serde",
+ "serde_yaml",
+ "thiserror",
+]
+
+[[package]]
+name = "scafra-core"
+version = "0.1.0"
+dependencies = [
+ "inventory",
+ "scafra-foundation",
+ "thiserror",
+]
+
+[[package]]
+name = "scafra-foundation"
+version = "0.1.0"
+dependencies = [
+ "serde",
+ "thiserror",
+ "tracing",
+ "tracing-subscriber",
+]
+
+[[package]]
+name = "scafra-macros"
+version = "0.1.0"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "scafra-foundation",
+ "syn 2.0.119",
+]
+
+[[package]]
+name = "scafra-scheduler"
+version = "0.1.0"
+dependencies = [
+ "inventory",
+ "serde",
+ "tokio",
+]
+
+[[package]]
+name = "scafra-security"
+version = "0.1.0"
+dependencies = [
+ "axum",
+ "base64 0.22.1",
+ "jsonwebtoken",
+ "reqwest",
+ "serde",
+ "serde_json",
+ "tokio",
+]
+
+[[package]]
+name = "scafra-test-service"
+version = "0.1.0"
+dependencies = [
+ "scafra",
+ "scafra-bootui",
+ "serde",
+ "tokio",
+ "tracing",
+]
+
+[[package]]
+name = "scafra-web"
+version = "0.1.0"
+dependencies = [
+ "axum",
+ "inventory",
+ "scafra-actuator",
+ "scafra-core",
+ "scafra-foundation",
+ "scafra-security",
+ "serde",
+ "thiserror",
+ "tokio",
+ "tower",
+ "tower-http",
+ "tracing",
+]
 
 [[package]]
 name = "serde"

@@ -1,4 +1,4 @@
-use ember::web::{
+use scafra::web::{
     axum::{
         body::to_bytes,
         body::Body,
@@ -6,11 +6,11 @@ use ember::web::{
     },
     tower::util::ServiceExt,
 };
-use ember_test_service as _;
+use scafra_test_service as _;
 
 #[tokio::test]
 async fn petstore_supports_crud_lifecycle() {
-    let app = ember::build_router().expect("petstore routes should build");
+    let app = scafra::build_router().expect("petstore routes should build");
     let response = app
         .clone()
         .oneshot(json_request(
@@ -56,7 +56,7 @@ async fn petstore_supports_crud_lifecycle() {
 
 #[tokio::test]
 async fn petstore_validates_json_and_pet_names() {
-    let app = ember::build_router().expect("petstore routes should build");
+    let app = scafra::build_router().expect("petstore routes should build");
     let response = app
         .clone()
         .oneshot(json_request(Request::post("/pet"), r#"{"name":""}"#))
@@ -73,7 +73,7 @@ async fn petstore_validates_json_and_pet_names() {
 
 #[tokio::test]
 async fn petstore_filters_by_status_and_tags() {
-    let app = ember::build_router().expect("petstore routes should build");
+    let app = scafra::build_router().expect("petstore routes should build");
     for payload in [
         r#"{"name":"Milo","tags":["cat"],"status":"available"}"#,
         r#"{"name":"Rex","tags":["dog"],"status":"sold"}"#,
@@ -113,7 +113,7 @@ async fn petstore_filters_by_status_and_tags() {
     assert!(body.windows(b"Rex".len()).any(|window| window == b"Rex"));
 }
 
-fn json_request(builder: ember::web::axum::http::request::Builder, body: &str) -> Request<Body> {
+fn json_request(builder: scafra::web::axum::http::request::Builder, body: &str) -> Request<Body> {
     builder
         .header("content-type", "application/json")
         .body(Body::from(body.to_owned()))
