@@ -1,4 +1,4 @@
-use ember_bootui as _;
+use scafra_bootui as _;
 
 mod controllers {
     mod pet_controller {

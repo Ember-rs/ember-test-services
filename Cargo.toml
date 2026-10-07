@@ -1,12 +1,12 @@
 [package]
-name = "ember-test-service"
+name = "scafra-test-service"
 version = "0.1.0"
 edition = "2021"
 publish = false
 
 [dependencies]
-ember = { path = "../ember/crates/ember" }
-ember-bootui = { path = "../ember/crates/ember-bootui" }
+scafra = { path = "../ember/crates/scafra" }
+scafra-bootui = { path = "../ember/crates/scafra-bootui" }
 serde = { version = "1", features = ["derive"] }
 tracing = "0.1"
 
