@@ -5,8 +5,14 @@ edition = "2021"
 publish = false
 
 [dependencies]
-scafra = "=0.1.0-snapshot.1"
-scafra-bootui = "=0.1.0-snapshot.1"
+scafra = {
+    git = "https://github.com/Scafra/Scafra",
+    rev = "c7f9dd227eb98e02b0882d6264259911956dd7f5",
+}
+scafra-bootui = {
+    git = "https://github.com/Scafra/Scafra",
+    rev = "c7f9dd227eb98e02b0882d6264259911956dd7f5",
+}
 serde = { version = "1", features = ["derive"] }
 tracing = "0.1"
 

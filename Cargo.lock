@@ -911,9 +911,8 @@ checksum = "9774ba4a74de5f7b1c1451ed6cd5285a32eddb5cccb8cc655a4e50009e06477f"
 
 [[package]]
 name = "scafra"
-version = "0.1.0-snapshot.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "33c26f05d96c2f9cfbe2c809fb5cfea6c4d245fcd8cdf12ac4493ae162c5e073"
+version = "0.1.0"
+source = "git+https://github.com/Scafra/Scafra?rev=c7f9dd227eb98e02b0882d6264259911956dd7f5#c7f9dd227eb98e02b0882d6264259911956dd7f5"
 dependencies = [
  "axum",
  "inventory",
@@ -932,20 +931,20 @@ dependencies = [
 
 [[package]]
 name = "scafra-actuator"
-version = "0.1.0-snapshot.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "5a76af01b2e082d5a27a4539b55066d4fec530e13507b154c79b6d0e0e95f021"
+version = "0.1.0"
+source = "git+https://github.com/Scafra/Scafra?rev=c7f9dd227eb98e02b0882d6264259911956dd7f5#c7f9dd227eb98e02b0882d6264259911956dd7f5"
 dependencies = [
  "axum",
  "inventory",
  "serde",
+ "tokio",
+ "tracing",
 ]
 
 [[package]]
 name = "scafra-bootui"
-version = "0.1.0-snapshot.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "be672785bb754c19a0a8cb0c5ae43d65f54125fac9fc5f8dbf70950a7975d43c"
+version = "0.1.0"
+source = "git+https://github.com/Scafra/Scafra?rev=c7f9dd227eb98e02b0882d6264259911956dd7f5#c7f9dd227eb98e02b0882d6264259911956dd7f5"
 dependencies = [
  "axum",
  "inventory",
@@ -957,10 +956,20 @@ dependencies = [
 ]
 
 [[package]]
+name = "scafra-build"
+version = "0.1.0"
+source = "git+https://github.com/Scafra/Scafra?rev=c7f9dd227eb98e02b0882d6264259911956dd7f5#c7f9dd227eb98e02b0882d6264259911956dd7f5"
+dependencies = [
+ "proc-macro2",
+ "scafra-core",
+ "scafra-foundation",
+ "syn 2.0.119",
+]
+
+[[package]]
 name = "scafra-config"
-version = "0.1.0-snapshot.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "7a74d84b435c31b620c5c880bbe7f4eddc14ae736c2647030522262e1772294e"
+version = "0.1.0"
+source = "git+https://github.com/Scafra/Scafra?rev=c7f9dd227eb98e02b0882d6264259911956dd7f5#c7f9dd227eb98e02b0882d6264259911956dd7f5"
 dependencies = [
  "scafra-actuator",
  "scafra-foundation",
@@ -973,9 +982,8 @@ dependencies = [
 
 [[package]]
 name = "scafra-core"
-version = "0.1.0-snapshot.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "779f34474597cd01502b88f5a0f8503dd282038c1d0ed4eda1c2c8f91f18a5ca"
+version = "0.1.0"
+source = "git+https://github.com/Scafra/Scafra?rev=c7f9dd227eb98e02b0882d6264259911956dd7f5#c7f9dd227eb98e02b0882d6264259911956dd7f5"
 dependencies = [
  "inventory",
  "scafra-foundation",
@@ -984,9 +992,8 @@ dependencies = [
 
 [[package]]
 name = "scafra-foundation"
-version = "0.1.0-snapshot.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "fb46303ad93c57ddb07b76f783b5285bfa355e8f69e62c5f97547c6c26d21708"
+version = "0.1.0"
+source = "git+https://github.com/Scafra/Scafra?rev=c7f9dd227eb98e02b0882d6264259911956dd7f5#c7f9dd227eb98e02b0882d6264259911956dd7f5"
 dependencies = [
  "serde",
  "thiserror",
@@ -996,21 +1003,20 @@ dependencies = [
 
 [[package]]
 name = "scafra-macros"
-version = "0.1.0-snapshot.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "5896268fb6444b888c98d76f10ba163b3361a4c11c30f84589926c02d21de004"
+version = "0.1.0"
+source = "git+https://github.com/Scafra/Scafra?rev=c7f9dd227eb98e02b0882d6264259911956dd7f5#c7f9dd227eb98e02b0882d6264259911956dd7f5"
 dependencies = [
  "proc-macro2",
  "quote",
+ "scafra-build",
  "scafra-foundation",
  "syn 2.0.119",
 ]
 
 [[package]]
 name = "scafra-scheduler"
-version = "0.1.0-snapshot.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "440bc476e261de3fd3a336aa3a468d78c8e36abeaa9a1ff8675e887d8ac18c17"
+version = "0.1.0"
+source = "git+https://github.com/Scafra/Scafra?rev=c7f9dd227eb98e02b0882d6264259911956dd7f5#c7f9dd227eb98e02b0882d6264259911956dd7f5"
 dependencies = [
  "inventory",
  "serde",
@@ -1019,9 +1025,8 @@ dependencies = [
 
 [[package]]
 name = "scafra-security"
-version = "0.1.0-snapshot.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "2b907efa8422bc4f2d85a987f110d4fa2b512cf68f760dbed45710f992576959"
+version = "0.1.0"
+source = "git+https://github.com/Scafra/Scafra?rev=c7f9dd227eb98e02b0882d6264259911956dd7f5#c7f9dd227eb98e02b0882d6264259911956dd7f5"
 dependencies = [
  "axum",
  "base64 0.22.1",
@@ -1045,9 +1050,8 @@ dependencies = [
 
 [[package]]
 name = "scafra-web"
-version = "0.1.0-snapshot.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "60270b6e54fa9bc51298f0d2916e6971fe39fba503faecc755063f5c0d46e8d1"
+version = "0.1.0"
+source = "git+https://github.com/Scafra/Scafra?rev=c7f9dd227eb98e02b0882d6264259911956dd7f5#c7f9dd227eb98e02b0882d6264259911956dd7f5"
 dependencies = [
  "axum",
  "inventory",
@@ -1395,6 +1399,7 @@ dependencies = [
  "http",
  "http-body",
  "pin-project-lite",
+ "tokio",
  "tower",
  "tower-layer",
  "tower-service",

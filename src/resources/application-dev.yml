@@ -9,7 +9,9 @@ logging:
   backtrace: errors
 
 actuator:
-  endpoints: [health, live, ready, info]
+  endpoints: [health, live, ready, info, metrics]
+  health:
+    checks: [pet-store]
 
 startup:
   banner: true
@@ -21,3 +23,10 @@ scheduler:
     pet-maintenance:
       enabled: true
       interval_ms: 5000
+
+security:
+  enabled: true
+  basic:
+    username: demo
+    password: scafra-local
+
