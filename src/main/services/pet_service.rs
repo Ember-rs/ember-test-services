@@ -1,7 +1,7 @@
 use std::{
     collections::BTreeMap,
     sync::{
-        atomic::{AtomicBool, AtomicU64, Ordering},
+        atomic::{AtomicU64, AtomicUsize, Ordering},
         Arc, RwLock,
     },
 };
@@ -20,11 +20,11 @@ pub struct PetStore {
     next_id: AtomicU64,
 }
 
-static PET_STORE_READY: AtomicBool = AtomicBool::new(false);
+static ACTIVE_PET_STORES: AtomicUsize = AtomicUsize::new(0);
 
 #[bean]
 pub fn pet_store() -> PetStore {
-    PET_STORE_READY.store(true, Ordering::Release);
+    ACTIVE_PET_STORES.fetch_add(1, Ordering::AcqRel);
     PetStore {
         pets: RwLock::new(BTreeMap::new()),
         next_id: AtomicU64::new(0),
@@ -32,10 +32,18 @@ pub fn pet_store() -> PetStore {
 }
 
 async fn pet_store_ready() -> bool {
-    PET_STORE_READY.load(Ordering::Acquire)
+    ACTIVE_PET_STORES.load(Ordering::Acquire) > 0
 }
 
+// Scafra's health hooks are process-wide, so this reports whether any live
+// PetStore exists in the process rather than identifying a specific graph.
 register_health_check!("pet-store", pet_store_ready);
+
+impl Drop for PetStore {
+    fn drop(&mut self) {
+        ACTIVE_PET_STORES.fetch_sub(1, Ordering::AcqRel);
+    }
+}
 
 impl PetService {
     pub fn list(&self, status: Option<PetStatus>, tags: &[String]) -> Result<Vec<Pet>> {
@@ -127,4 +135,20 @@ fn validate_name(name: &str) -> Result<()> {
         ));
     }
     Ok(())
+}
+
+#[cfg(test)]
+mod tests {
+    use super::{pet_store, pet_store_ready};
+
+    #[tokio::test]
+    async fn pet_store_readiness_tracks_live_instances() {
+        assert!(!pet_store_ready().await);
+
+        let store = pet_store();
+        assert!(pet_store_ready().await);
+
+        drop(store);
+        assert!(!pet_store_ready().await);
+    }
 }

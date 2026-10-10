@@ -1,0 +1,21 @@
+#!/usr/bin/env sh
+set -eu
+
+project_root=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
+scafra_root=${SCAFRA_CHECKOUT:-"$project_root/../ember"}
+scafra_root=$(CDPATH= cd -- "$scafra_root" 2>/dev/null && pwd) || {
+    echo "Local Scafra checkout not found at '$scafra_root'." >&2
+    echo "Use plain cargo commands for the pinned Scafra Git dependency." >&2
+    exit 2
+}
+
+if [ ! -f "$scafra_root/crates/scafra/Cargo.toml" ] || [ ! -f "$scafra_root/crates/scafra-bootui/Cargo.toml" ]; then
+    echo "The checkout at '$scafra_root' does not contain Scafra and Scafra BootUI crates." >&2
+    exit 2
+fi
+
+cd "$project_root"
+exec cargo \
+    --config "patch.\"https://github.com/Scafra/Scafra\".scafra.path=\"$scafra_root/crates/scafra\"" \
+    --config "patch.\"https://github.com/Scafra/Scafra\".scafra-bootui.path=\"$scafra_root/crates/scafra-bootui\"" \
+    "$@"

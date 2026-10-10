@@ -912,6 +912,7 @@ checksum = "9774ba4a74de5f7b1c1451ed6cd5285a32eddb5cccb8cc655a4e50009e06477f"
 [[package]]
 name = "scafra"
 version = "0.1.0"
+source = "git+https://github.com/Scafra/Scafra?rev=c7f9dd227eb98e02b0882d6264259911956dd7f5#c7f9dd227eb98e02b0882d6264259911956dd7f5"
 dependencies = [
  "axum",
  "inventory",
@@ -931,16 +932,19 @@ dependencies = [
 [[package]]
 name = "scafra-actuator"
 version = "0.1.0"
+source = "git+https://github.com/Scafra/Scafra?rev=c7f9dd227eb98e02b0882d6264259911956dd7f5#c7f9dd227eb98e02b0882d6264259911956dd7f5"
 dependencies = [
  "axum",
  "inventory",
  "serde",
  "tokio",
+ "tracing",
 ]
 
 [[package]]
 name = "scafra-bootui"
 version = "0.1.0"
+source = "git+https://github.com/Scafra/Scafra?rev=c7f9dd227eb98e02b0882d6264259911956dd7f5#c7f9dd227eb98e02b0882d6264259911956dd7f5"
 dependencies = [
  "axum",
  "inventory",
@@ -954,6 +958,7 @@ dependencies = [
 [[package]]
 name = "scafra-build"
 version = "0.1.0"
+source = "git+https://github.com/Scafra/Scafra?rev=c7f9dd227eb98e02b0882d6264259911956dd7f5#c7f9dd227eb98e02b0882d6264259911956dd7f5"
 dependencies = [
  "proc-macro2",
  "scafra-core",
@@ -964,6 +969,7 @@ dependencies = [
 [[package]]
 name = "scafra-config"
 version = "0.1.0"
+source = "git+https://github.com/Scafra/Scafra?rev=c7f9dd227eb98e02b0882d6264259911956dd7f5#c7f9dd227eb98e02b0882d6264259911956dd7f5"
 dependencies = [
  "scafra-actuator",
  "scafra-foundation",
@@ -977,6 +983,7 @@ dependencies = [
 [[package]]
 name = "scafra-core"
 version = "0.1.0"
+source = "git+https://github.com/Scafra/Scafra?rev=c7f9dd227eb98e02b0882d6264259911956dd7f5#c7f9dd227eb98e02b0882d6264259911956dd7f5"
 dependencies = [
  "inventory",
  "scafra-foundation",
@@ -986,6 +993,7 @@ dependencies = [
 [[package]]
 name = "scafra-foundation"
 version = "0.1.0"
+source = "git+https://github.com/Scafra/Scafra?rev=c7f9dd227eb98e02b0882d6264259911956dd7f5#c7f9dd227eb98e02b0882d6264259911956dd7f5"
 dependencies = [
  "serde",
  "thiserror",
@@ -996,6 +1004,7 @@ dependencies = [
 [[package]]
 name = "scafra-macros"
 version = "0.1.0"
+source = "git+https://github.com/Scafra/Scafra?rev=c7f9dd227eb98e02b0882d6264259911956dd7f5#c7f9dd227eb98e02b0882d6264259911956dd7f5"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -1007,6 +1016,7 @@ dependencies = [
 [[package]]
 name = "scafra-scheduler"
 version = "0.1.0"
+source = "git+https://github.com/Scafra/Scafra?rev=c7f9dd227eb98e02b0882d6264259911956dd7f5#c7f9dd227eb98e02b0882d6264259911956dd7f5"
 dependencies = [
  "inventory",
  "serde",
@@ -1016,6 +1026,7 @@ dependencies = [
 [[package]]
 name = "scafra-security"
 version = "0.1.0"
+source = "git+https://github.com/Scafra/Scafra?rev=c7f9dd227eb98e02b0882d6264259911956dd7f5#c7f9dd227eb98e02b0882d6264259911956dd7f5"
 dependencies = [
  "axum",
  "base64 0.22.1",
@@ -1040,6 +1051,7 @@ dependencies = [
 [[package]]
 name = "scafra-web"
 version = "0.1.0"
+source = "git+https://github.com/Scafra/Scafra?rev=c7f9dd227eb98e02b0882d6264259911956dd7f5#c7f9dd227eb98e02b0882d6264259911956dd7f5"
 dependencies = [
  "axum",
  "inventory",

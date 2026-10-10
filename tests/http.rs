@@ -6,11 +6,11 @@ use scafra::web::{
     },
     tower::util::ServiceExt,
 };
-use scafra_test_service as _;
+use scafra_test_service::build_petstore_router;
 
 #[tokio::test]
 async fn petstore_supports_crud_lifecycle() {
-    let app = scafra::build_router().expect("petstore routes should build");
+    let app = petstore_app();
     let response = app
         .clone()
         .oneshot(json_request(
@@ -56,7 +56,7 @@ async fn petstore_supports_crud_lifecycle() {
 
 #[tokio::test]
 async fn petstore_validates_json_and_pet_names() {
-    let app = scafra::build_router().expect("petstore routes should build");
+    let app = petstore_app();
     let response = app
         .clone()
         .oneshot(json_request(Request::post("/pet"), r#"{"name":""}"#))
@@ -73,7 +73,7 @@ async fn petstore_validates_json_and_pet_names() {
 
 #[tokio::test]
 async fn petstore_filters_by_status_and_tags() {
-    let app = scafra::build_router().expect("petstore routes should build");
+    let app = petstore_app();
     for payload in [
         r#"{"name":"Milo","tags":["cat"],"status":"available"}"#,
         r#"{"name":"Rex","tags":["dog"],"status":"sold"}"#,
@@ -118,4 +118,8 @@ fn json_request(builder: scafra::web::axum::http::request::Builder, body: &str) 
         .header("content-type", "application/json")
         .body(Body::from(body.to_owned()))
         .unwrap()
+}
+
+fn petstore_app() -> scafra::web::axum::Router {
+    build_petstore_router(&scafra::ScafraConfig::default()).expect("petstore routes should build")
 }
