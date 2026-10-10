@@ -10,12 +10,14 @@ logging:
 bootui:
   enabled: true
   host: 127.0.0.1
-  port: 8091
+  port: 18092
   path: /bootui
   local_only: true
 
 actuator:
-  endpoints: [health, live, ready, info]
+  endpoints: [health, live, ready, info, metrics]
+  health:
+    checks: [pet-store]
 
 startup:
   banner: true

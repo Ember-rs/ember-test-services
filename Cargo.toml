@@ -5,8 +5,8 @@ edition = "2021"
 publish = false
 
 [dependencies]
-scafra = "=0.1.0-snapshot.1"
-scafra-bootui = "=0.1.0-snapshot.1"
+scafra = { path = "../ember/crates/scafra", version = "=0.1.0" }
+scafra-bootui = { path = "../ember/crates/scafra-bootui", version = "=0.1.0" }
 serde = { version = "1", features = ["derive"] }
 tracing = "0.1"
 

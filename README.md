@@ -63,6 +63,31 @@ PUT    /pet/{id}
 DELETE /pet/{id}
 ```
 
+## Live Scafra feature demo
+
+Run the development profile to see the framework features in action:
+
+```bash
+SCAFRA_PROFILE=dev cargo run
+```
+
+The service listens on `127.0.0.1:8081` in this profile. Open
+<http://127.0.0.1:18092/bootui> for the BootUI dashboard and the effective
+configuration. Actuator health, readiness, liveness, info, and metrics are
+available at `/health`, `/ready`, `/live`, `/info`, and `/metrics`.
+Readiness checks that the PetStore bean was created during startup.
+
+The dev profile enables HTTP Basic authentication for the Pet API. Use
+`demo:scafra-local`, for example:
+
+```bash
+curl -u demo:scafra-local http://127.0.0.1:8081/pet
+```
+
+The `pet-maintenance` scheduler logs a heartbeat every five seconds in this
+profile. The base profile uses the same visible features with authentication
+disabled and a 30-second scheduler interval.
+
 Data is stored in memory and is reset whenever the service restarts.
 
 ## Example

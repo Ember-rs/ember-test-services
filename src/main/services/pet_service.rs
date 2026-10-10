@@ -1,6 +1,9 @@
 use std::{
     collections::BTreeMap,
-    sync::{atomic::{AtomicU64, Ordering}, Arc, RwLock},
+    sync::{
+        atomic::{AtomicBool, AtomicU64, Ordering},
+        Arc, RwLock,
+    },
 };
 
 use scafra::prelude::*;
@@ -9,13 +12,35 @@ use crate::models::pet::{Pet, PetRequest, PetStatus};
 
 #[service]
 pub struct PetService {
-    pets: Arc<RwLock<BTreeMap<u64, Pet>>>,
-    next_id: Arc<AtomicU64>,
+    store: Arc<PetStore>,
 }
+
+pub struct PetStore {
+    pets: RwLock<BTreeMap<u64, Pet>>,
+    next_id: AtomicU64,
+}
+
+static PET_STORE_READY: AtomicBool = AtomicBool::new(false);
+
+#[bean]
+pub fn pet_store() -> PetStore {
+    PET_STORE_READY.store(true, Ordering::Release);
+    PetStore {
+        pets: RwLock::new(BTreeMap::new()),
+        next_id: AtomicU64::new(0),
+    }
+}
+
+async fn pet_store_ready() -> bool {
+    PET_STORE_READY.load(Ordering::Acquire)
+}
+
+register_health_check!("pet-store", pet_store_ready);
 
 impl PetService {
     pub fn list(&self, status: Option<PetStatus>, tags: &[String]) -> Result<Vec<Pet>> {
         let pets = self
+            .store
             .pets
             .read()
             .map_err(|_| AppError::Internal("pet store unavailable".to_owned()))?;
@@ -30,6 +55,7 @@ impl PetService {
 
     pub fn find(&self, id: u64) -> Result<Pet> {
         let pets = self
+            .store
             .pets
             .read()
             .map_err(|_| AppError::Internal("pet store unavailable".to_owned()))?;
@@ -38,7 +64,7 @@ impl PetService {
 
     pub fn create(&self, request: PetRequest) -> Result<Pet> {
         validate_name(&request.name)?;
-        let id = self.next_id.fetch_add(1, Ordering::Relaxed) + 1;
+        let id = self.store.next_id.fetch_add(1, Ordering::Relaxed) + 1;
         let pet = Pet {
             id,
             name: request.name,
@@ -46,7 +72,8 @@ impl PetService {
             tags: request.tags,
             status: request.status,
         };
-        self.pets
+        self.store
+            .pets
             .write()
             .map_err(|_| AppError::Internal("pet store unavailable".to_owned()))?
             .insert(id, pet.clone());
@@ -63,6 +90,7 @@ impl PetService {
             status: request.status,
         };
         let mut pets = self
+            .store
             .pets
             .write()
             .map_err(|_| AppError::Internal("pet store unavailable".to_owned()))?;
@@ -75,6 +103,7 @@ impl PetService {
 
     pub fn delete(&self, id: u64) -> Result<()> {
         let removed = self
+            .store
             .pets
             .write()
             .map_err(|_| AppError::Internal("pet store unavailable".to_owned()))?
